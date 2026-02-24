@@ -12,6 +12,10 @@ You do not need to understand everything at once. Approach the app as a curious 
 
 The core concept of this exercise was understanding how the logic behind the playlist app works, especially how functions like search and classification translate user input into results. It also required understanding how to run and test the app locally using Streamlit, since being able to launch the app and observe its behavior was necessary to identify bugs. One area students are most likely to struggle with is setting up the environment correctly, such as installing Streamlit, running it through the correct Python environment, and opening the app through the Codespaces port instead of localhost. AI was helpful when I asked specific, targeted questions, such as explaining what the search_songs function was doing and why searching for “Moch” did not return “Mochakk,” because it helped connect the code to the behavior I observed. However, AI could be misleading if prompts were too vague, since it sometimes suggested unrelated improvements or potential bugs that were not actually causing the issue I saw. To guide another student without giving the answer, I would encourage them to create clear test cases, highlighting the relevant functions, and asking focused prompts like “Why does this condition fail when the query is shorter than the artist name?” so they can reason through the logic themselves instead of relying on AI to fix it automatically.
 
+https://github.com/user-attachments/assets/1d9ee3c7-ceb1-4a2c-9d96-ffa9edaf799f
+
+
+
 ## How the code is organized
 
 ### `app.py`  
