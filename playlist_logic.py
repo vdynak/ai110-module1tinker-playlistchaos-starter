@@ -168,7 +168,7 @@ def search_songs(
 
     for song in songs:
         value = str(song.get(field, "")).lower()
-        if value and value in q:
+        if value and q in value:
             filtered.append(song)
 
     return filtered
@@ -193,6 +193,8 @@ def random_choice_or_none(songs: List[Song]) -> Optional[Song]:
     """Return a random song or None."""
     import random
 
+    if not songs:
+        return None
     return random.choice(songs)
 
 
