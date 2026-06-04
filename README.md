@@ -1,5 +1,12 @@
 # Playlist Chaos
 
+## Quick notes from the fix
+
+- We found the playlist search and lucky pick acting weird: artist search only matched incorrectly, and lucky pick crashed when a mood playlist was empty.
+- The fix was in `playlist_logic.py`: `search_songs()` now checks the query against the actual song field, and `random_choice_or_none()` safely returns `None` for empty playlists.
+- I also cleaned up `compute_playlist_stats()` so it uses named totals and avoids repeated length calculations.
+- I tested the changes with quick Python checks for search matching, empty lucky picks, and stat outputs.
+
 Your AI assistant tried to build a smart playlist generator. The app runs, but some of the behavior is unpredictable. Your task is to explore the app, investigate the code, and use an AI assistant to debug and improve it.
 
 This activity is your first chance to practice AI-assisted debugging on a codebase that is slightly messy, slightly mysterious, and intentionally imperfect.
@@ -112,15 +119,3 @@ If you finish early or want an extra challenge, try one of these:
 
 When you finish, Playlist Chaos will feel more predictable, and you will have taken your first steps into AI-assisted debugging.
 
-## Reflection on the Fix and Refactor
-
-- Chosen issue: I fixed the playlist search and lucky pick behavior. In the app, artist search was behaving incorrectly, and the lucky pick crashed when a selected mood playlist was empty. I traced this to `search_songs()` and `lucky_pick()` in `playlist_logic.py`.
-- Fix: I changed `search_songs()` to check whether the query is contained in the song field value (`q in value`) instead of the reverse. I also updated `random_choice_or_none()` to return `None` when the playlist is empty.
-
-- Refactor: I clarified `compute_playlist_stats()` by storing `total_songs`, `hype_count`, `chill_count`, and `mixed_count` in variables before using them. This reduced repeated length calculations and made the logic easier to follow.
-- AI collaboration: The assistant’s structure suggestion made sense because it isolated a single calculation block and kept the function readable. I accepted that approach and adjusted it slightly to keep the final code concise and safe.
-- Validation: I confirmed the changes by running direct Python checks for search matching, empty lucky picks, and playlist statistics. The tests showed the behavior was fixed and no new issues were introduced.
-
-- Testing: I verified search with partial and full artist queries, confirmed `lucky_pick()` returns `None` safely on empty playlists, and validated stats output for a simple playlist map. No new issues appeared from these focused changes.
-
-- Team insight: When working with AI on debugging, keep prompts specific and use small, incremental edits. Focus on one behavior at a time, validate immediately, and avoid bulk rewrites to minimize unintended changes.
